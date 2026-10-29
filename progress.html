@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#087fa8">
+<title>ILMO Health | التقدم الدراسي</title>
+<style>
+:root{--blue:#087fa8;--cyan:#20b8d5;--bg:#effaff;--ink:#163746}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Tahoma,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,var(--blue),var(--cyan));color:white;padding:25px 18px 30px;border-radius:0 0 25px 25px}
+header a{color:white;text-decoration:none}
+header h1{margin:18px 0 8px;font-size:24px}
+header p{margin:0;font-size:14px;line-height:1.8}
+main{max-width:700px;margin:auto;padding:20px 15px}
+.panel{background:white;border:1px solid #dceef4;border-radius:20px;padding:19px;margin-bottom:15px}
+.panel h2{font-size:18px;margin:0 0 17px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.stat{background:#f4fbfd;border-radius:14px;padding:15px 10px;text-align:center}
+.stat strong{display:block;color:var(--blue);font-size:27px;margin-bottom:7px}
+.stat span{font-size:12px;color:#637d89}
+.bar{height:12px;background:#dfedf2;border-radius:20px;overflow:hidden;margin:14px 0}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .3s}
+.muted{color:#637d89;font-size:13px;line-height:1.9}
+button{border:0;border-radius:12px;padding:13px 16px;font-size:14px;cursor:pointer}
+.primary{background:var(--blue);color:white;width:100%}
+.danger{background:#fff0f0;color:#ad3030;width:100%;margin-top:10px}
+footer{text-align:center;color:#637d89;font-size:12px;padding:22px}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html">← الرجوع للواجهة الرئيسية</a>
+  <h1>📊 التقدم الدراسي</h1>
+  <p>تابع إنجازك ونقاطك ونتائج التدريب.</p>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>ملخص التقدم</h2>
+    <div class="grid">
+      <div class="stat"><strong id="points">0</strong><span>النقاط</span></div>
+      <div class="stat"><strong id="answered">0</strong><span>الإجابات المسجلة</span></div>
+      <div class="stat"><strong id="correct">0</strong><span>إجابات صحيحة</span></div>
+      <div class="stat"><strong id="wrong">0</strong><span>إجابات خاطئة</span></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>نسبة الإجابات الصحيحة</h2>
+    <strong id="percent">0%</strong>
+    <div class="bar"><div id="barFill"></div></div>
+    <p class="muted" id="message">ابدأ حل الكيسات حتى تظهر نتائجك هنا.</p>
+  </section>
+
+  <section class="panel">
+    <h2>مصدر البيانات</h2>
+    <p class="muted">
+      تُحفظ البيانات محلياً على هذا الجهاز والمتصفح. لا تنتقل تلقائياً
+      إلى جهاز آخر، وقد تُفقد عند مسح بيانات المتصفح.
+    </p>
+    <button class="primary" id="refresh">تحديث النتائج</button>
+    <button class="danger" id="reset">تصفير التقدم المحفوظ</button>
+  </section>
+</main>
+
+<footer>ILMO Health © 2026</footer>
+
+<script>
+const STORAGE_KEY = "ilmo_health_progress_v1";
+
+function getData(){
+  try{
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    return {
+      points: Number(data.points) || 0,
+      answered: Number(data.answered) || 0,
+      correct: Number(data.correct) || 0,
+      wrong: Number(data.wrong) || 0
+    };
+  }catch(e){
+    return {points:0,answered:0,correct:0,wrong:0};
+  }
+}
+
+function render(){
+  const data = getData();
+  const percent = data.answered
+    ? Math.round(data.correct / data.answered * 100)
+    : 0;
+
+  document.getElementById("points").textContent = data.points;
+  document.getElementById("answered").textContent = data.answered;
+  document.getElementById("correct").textContent = data.correct;
+  document.getElementById("wrong").textContent = data.wrong;
+  document.getElementById("percent").textContent = percent + "%";
+  document.getElementById("barFill").style.width = percent + "%";
+
+  document.getElementById("message").textContent =
+    data.answered === 0
+      ? "ابدأ حل الكيسات حتى تظهر نتائجك هنا."
+      : "سجلت " + data.answered + " إجابة. استمر بالتدريب لتحسين نتيجتك.";
+}
+
+document.getElementById("refresh").addEventListener("click",render);
+
+document.getElementById("reset").addEventListener("click",()=>{
+  if(!confirm("هل تريد تصفير بيانات التقدم المحفوظة على هذا الجهاز؟")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

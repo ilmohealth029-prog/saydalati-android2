@@ -1,0 +1,17 @@
+{
+  "name": "صيدليتي",
+  "short_name": "صيدليتي",
+  "description": "تطبيق صيدليتي للتعليم الصيدلاني",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#087f8c",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

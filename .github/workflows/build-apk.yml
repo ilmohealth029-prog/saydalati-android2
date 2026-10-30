@@ -1,5 +1,5 @@
 
-name: Build ILMO Health APK
+name: Build Saydalati APK
 
 on:
   push:
@@ -13,6 +13,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
 
     steps:
       - name: Download repository
@@ -29,17 +30,55 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Create Android project
+      - name: Install Python image tools
+        run: python3 -m pip install --quiet Pillow
+
+      - name: Create Android project and launcher icons
         run: |
           mkdir -p app/src/main/java/com/ilmohealth/app
           mkdir -p app/src/main/assets
+
+          if [ ! -f icon.png ]; then
+            echo "ERROR: icon.png is missing from repository root"
+            exit 1
+          fi
 
           find . -maxdepth 1 -type f \( \
             -name '*.html' -o \
             -name '*.js' -o \
             -name '*.css' -o \
-            -name '*.json' \
+            -name '*.json' -o \
+            -name '*.png' \
           \) -exec cp {} app/src/main/assets/ \;
+
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+
+          source = Image.open("icon.png").convert("RGBA")
+
+          sizes = {
+              "mipmap-mdpi": 48,
+              "mipmap-hdpi": 72,
+              "mipmap-xhdpi": 96,
+              "mipmap-xxhdpi": 144,
+              "mipmap-xxxhdpi": 192,
+          }
+
+          for folder, size in sizes.items():
+              target = Path("app/src/main/res") / folder
+              target.mkdir(parents=True, exist_ok=True)
+
+              icon = source.resize(
+                  (size, size),
+                  Image.Resampling.LANCZOS
+              )
+
+              icon.save(target / "ic_launcher.png")
+              icon.save(target / "ic_launcher_round.png")
+
+          print("Saydalati launcher icons generated successfully.")
+          PY
 
           cat > settings.gradle <<'EOF'
           pluginManagement {
@@ -49,6 +88,7 @@ jobs:
                   gradlePluginPortal()
               }
           }
+
           dependencyResolutionManagement {
               repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
               repositories {
@@ -56,7 +96,8 @@ jobs:
                   mavenCentral()
               }
           }
-          rootProject.name = "ILMOHealth"
+
+          rootProject.name = "Saydalati"
           include ':app'
           EOF
 
@@ -88,16 +129,21 @@ jobs:
           cat > app/src/main/AndroidManifest.xml <<'EOF'
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
               <application
-                  android:label="ILMO Health"
+                  android:label="صيدليتي"
+                  android:icon="@mipmap/ic_launcher"
+                  android:roundIcon="@mipmap/ic_launcher_round"
                   android:theme="@android:style/Theme.Material.Light.NoActionBar"
                   android:usesCleartextTraffic="false">
+
                   <activity
                       android:name=".MainActivity"
                       android:exported="true">
+
                       <intent-filter>
                           <action android:name="android.intent.action.MAIN" />
                           <category android:name="android.intent.category.LAUNCHER" />
                       </intent-filter>
+
                   </activity>
               </application>
           </manifest>
@@ -121,6 +167,7 @@ jobs:
                   super.onCreate(savedInstanceState);
 
                   webView = new WebView(this);
+
                   WebSettings settings = webView.getSettings();
                   settings.setJavaScriptEnabled(true);
                   settings.setDomStorageEnabled(true);
@@ -129,6 +176,7 @@ jobs:
 
                   webView.setWebViewClient(new WebViewClient());
                   webView.setWebChromeClient(new WebChromeClient());
+
                   setContentView(webView);
                   webView.loadUrl("file:///android_asset/index.html");
               }
@@ -150,5 +198,6 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: ILMO-Health-APK
+          name: Saydalati-APK
           path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#087fa8">
+<title>التداخلات الدوائية | صيدليتي</title>
+<style>
+:root{--blue:#087fa8;--cyan:#20b8d5;--bg:#effaff;--ink:#173746;--muted:#607985;--line:#dcecf2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Tahoma,sans-serif}
+header{background:linear-gradient(135deg,var(--blue),var(--cyan));color:white;padding:22px 16px 25px;border-radius:0 0 24px 24px}
+header a{color:white;text-decoration:none;display:inline-block;margin-bottom:16px}
+h1{font-size:24px;margin:0 0 8px}
+header p{font-size:14px;line-height:1.8;margin:0}
+main{max-width:850px;margin:auto;padding:18px 13px 35px}
+.note,.entry,.source{background:white;border:1px solid var(--line);border-radius:16px;padding:15px;margin-bottom:12px;box-shadow:0 4px 14px #123c4d0a}
+.note{line-height:1.9;font-size:14px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+input,select{font:inherit;border:1px solid #c9e0e9;background:white;border-radius:12px;padding:12px;color:var(--ink);min-width:0}
+input{flex:1;min-width:190px}
+select{width:100%}
+.entry h2{font-size:17px;margin:0 0 10px;color:var(--blue)}
+.pair{font-weight:bold;margin:7px 0}
+.meta{font-size:12px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:9px}
+.tag{display:inline-block;background:#e7f8fc;color:#086b8b;border-radius:20px;padding:4px 9px;font-size:12px;margin:0 0 8px 5px}
+.entry p{line-height:1.85;margin:7px 0;font-size:14px}
+#count{font-size:13px;color:var(--muted);margin:8px 2px 12px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
+</style>
+</head>
+<body>
+<header>
+<a href="index.html">← الرجوع إلى الرئيسية</a>
+<h1>التداخلات الدوائية</h1>
+<p>مرجع تعليمي للتداخلات والتحذيرات المذكورة في دليل التدريب الصيفي للمرحلة الثالثة.</p>
+</header>
+<main>
+<div class="note">
+<strong>تنبيه علمي مهم:</strong>
+هذه الصفحة تجمع التداخلات والتحذيرات التي أمكن تحديدها صراحةً في المصدر المرفق، وليست قائمة بكل التداخلات الممكنة لكل دواء. بعض المواضع في المصدر تذكر وجود تداخلات دون تسمية الأدوية المقابلة؛ لذلك لم أضف أسماء غير مذكورة. يجب مراجعة مرجع دوائي حديث والتحقق من حالة المريض والجرعات قبل اتخاذ قرار علاجي.
+</div>
+<div class="controls">
+<input id="search" type="search" placeholder="ابحث باسم الدواء أو التداخل...">
+<select id="category">
+<option value="">كل الأنواع</option>
+<option>زيادة السمية أو الآثار الجانبية</option>
+<option>نقص الامتصاص أو الفعالية</option>
+<option>تداخل استقلابي</option>
+<option>زيادة خطر النزف أو أذى الجهاز الهضمي</option>
+<option>تداخل غذائي</option>
+<option>تداخل عام مذكور دون تحديد شريك</option>
+</select>
+</div>
+<div id="count"></div>
+<div id="list"></div>
+<div class="source">
+<strong>المصدر الأساسي:</strong>
+Summer Training Guide for Third Stage Pharmacy Students، إعداد الدكتور ضياء جبار كاظم. أرقام الصفحات أدناه هي أرقام الصفحات المطبوعة داخل الدليل، وقد تختلف عن رقم صفحة قارئ PDF.
+</div>
+</main>
+<footer>صيدليتي © 2026</footer>
+<script>
+const interactions = [
+{drug:"Warfarin",other:"أدوية متعددة، أغذية، أعشاب ومكملات غذائية (لم يسمِّ المصدر أمثلة محددة)",type:"تداخل عام مذكور دون تحديد شريك",effect:"يذكر الدليل أن الوارفارين معرض لتداخلات دوائية وغذائية مهمة سريرياً، وقد تؤثر في سلامة العلاج وخطر النزف.",advice:"اسأل المريض عند كل مراجعة عن الأدوية والأغذية والأعشاب والمكملات، وتابع INR وفق الخطة العلاجية.",page:"22"},
+{drug:"Cimetidine",other:"Theophylline",type:"تداخل استقلابي",effect:"السيميتيدين يثبط عدة إنزيمات CYP450؛ وقد يزيد التعرض للثيوفيلين.",advice:"قد يلزم تجنب المشاركة أو تعديل جرعة الدواء المتأثر ومراقبة المريض.",page:"29"},
+{drug:"Cimetidine",other:"Warfarin",type:"تداخل استقلابي",effect:"تثبيط إنزيمات CYP450 قد يسبب تداخلاً مهماً مع الوارفارين.",advice:"قد يلزم تجنب المشاركة أو خفض الجرعة مع متابعة INR والنزف.",page:"29"},
+{drug:"Cimetidine",other:"Clopidogrel",type:"تداخل استقلابي",effect:"يذكر المصدر الكلوبيدوغريل ضمن أمثلة الأدوية التي تتداخل مع السيميتيدين بسبب تثبيط CYP450.",advice:"تجنب المشاركة أو راجع الحاجة لتعديل العلاج بحسب التقييم السريري.",page:"29"},
+{drug:"Antacids (مضادات الحموضة)",other:"أدوية فموية عديدة؛ لم يسمِّ المصدر جميعها",type:"نقص الامتصاص أو الفعالية",effect:"قد تقلل مضادات الحموضة امتصاص أدوية أخرى عبر التخليب أو الامتزاز.",advice:"افصل إعطاء الدواء المتأثر عن مضاد الحموضة ساعتين على الأقل متى كان ذلك مناسباً.",page:"32"},
+{drug:"Antacids (مضادات الحموضة)",other:"الأقراص أو الكبسولات أو الحبيبات ذات التغليف المعوي",type:"نقص الامتصاص أو الفعالية",effect:"قد يؤدي مضاد الحموضة إلى تفكك التغليف المعوي مبكراً وإطلاق الدواء في المعدة.",advice:"تجنب الجمع غير المدروس وراجع تعليمات المستحضر.",page:"32"},
+{drug:"Kaolin (الكاولين)",other:"بعض الأدوية الفموية غير المسماة في المصدر",type:"نقص الامتصاص أو الفعالية",effect:"قد يشكل الكاولين معقدات غير ذائبة مع بعض الأدوية في الجهاز الهضمي ويقلل امتصاصها.",advice:"لا تؤخذ الجرعات الفموية في الوقت نفسه؛ افصل التوقيت وفق نشرة الدواء أو مرجع موثوق.",page:"36"},
+{drug:"Theophylline",other:"تداخلات دوائية متعددة؛ لم يسمِّ هذا الموضع شركاء محددين",type:"تداخل عام مذكور دون تحديد شريك",effect:"لدى الثيوفيلين مجال علاجي ضيق وتداخلات دوائية مهمة سريرياً قد تسبب سمية شديدة.",advice:"تحقق من كل دواء مصاحب وراقب الاستجابة/التركيز عند الحاجة.",page:"48"},
+{drug:"Phenobarbital / Phenytoin / Primidone / Carbamazepine",other:"أدوية أخرى تُستقلب عبر إنزيمات CYP450",type:"تداخل استقلابي",effect:"هذه مضادات الاختلاج محفزات قوية لإنزيمات CYP450 وقد تزيد تصفية الأدوية الأخرى، فتقل تراكيزها أو فعاليتها.",advice:"راجع التداخلات عند بدء هذه الأدوية أو إيقافها، وقد يلزم تعديل جرعات الأدوية المصاحبة.",page:"56"},
+{drug:"Valproic acid",other:"أدوية تستقلب كبدياً أو ترتبط بألبومين البلازما",type:"تداخل استقلابي",effect:"يذكر المصدر أن حمض الفالبرويك يثبط أنظمة إنزيمية كبدية عديدة وقد يزيح بعض الأدوية من الارتباط بألبومين البلازما.",advice:"راجع التداخلات الدوائية وراقب السمية أو تغير الفعالية بحسب الدواء المصاحب.",page:"56"},
+{drug:"Fluoroquinolones (مثل ciprofloxacin)",other:"مضادات الحموضة المحتوية على الألمنيوم أو المغنيسيوم؛ الحديد الفموي؛ الكالسيوم الفموي؛ الزنك الفموي",type:"نقص الامتصاص أو الفعالية",effect:"تنخفض بصورة ملحوظة قدرة امتصاص الفلوروكينولونات الفموية عند تناولها مع هذه المنتجات.",advice:"افصل الجرعات زمنياً وفق نشرة المستحضر؛ لا تتناولها معاً في الوقت نفسه.",page:"77"},
+{drug:"Ciprofloxacin / Quinolones",other:"منتجات الألبان",type:"نقص الامتصاص أو الفعالية",effect:"يذكر الدليل أن تناول السيبروفلوكساسين مع منتجات الألبان قد يعيق امتصاصه.",advice:"تجنب تناوله مع منتجات الألبان وفق تعليمات المستحضر.",page:"77"},
+{drug:"Combined hormonal contraceptives (حبوب/لصقات/حلقات)",other:"الأدوية المحفزة للإنزيمات أو Griseofulvin",type:"نقص الامتصاص أو الفعالية",effect:"قد تقل فعالية موانع الحمل الهرمونية المركبة، ما يضعف الحماية من الحمل.",advice:"ينصح الدليل بوسيلة موثوقة لا تتأثر بمحفزات الإنزيمات أثناء العلاج ولمدة 4 أسابيع بعد إيقافها.",page:"118"},
+{drug:"Oral progestogen-only contraceptives",other:"الأدوية المحفزة للإنزيمات أو Griseofulvin",type:"نقص الامتصاص أو الفعالية",effect:"قد تنخفض فعالية مستحضرات البروجستين الفموية فقط.",advice:"استخدم وسيلة بديلة لا تتأثر بالتداخل أثناء العلاج ولمدة 4 أسابيع بعد إيقاف الدواء المتداخل.",page:"119"},
+{drug:"Oral iron (الحديد الفموي)",other:"Fluoroquinolones",type:"نقص الامتصاص أو الفعالية",effect:"الحديد يقلل امتصاص الفلوروكينولونات.",advice:"افصل توقيت الجرعات وفق نشرة المضاد الحيوي.",page:"122"},
+{drug:"Oral iron (الحديد الفموي)",other:"Tetracyclines",type:"نقص الامتصاص أو الفعالية",effect:"الحديد يقلل امتصاص التتراسيكلينات.",advice:"افصل توقيت الجرعات وفق نشرة المستحضر.",page:"122"},
+{drug:"Oral iron (الحديد الفموي)",other:"Mycophenolate mofetil",type:"نقص الامتصاص أو الفعالية",effect:"يذكر المصدر أن الحديد يقلل امتصاص مايکوفينوليت موفيتيل.",advice:"راجع التوقيت المناسب للفصل بين الجرعتين مع الصيدلي أو الطبيب.",page:"122"},
+{drug:"NSAIDs (مثل ibuprofen, diclofenac, naproxen)",other:"Low-dose aspirin (الأسبرين بجرعة منخفضة)",type:"زيادة خطر النزف أو أذى الجهاز الهضمي",effect:"الجمع قد يزيد الآثار الجانبية الهضمية، وقد يفقد مثبطات COX-2 الانتقائية ميزتها في تقليل تهيج الجهاز الهضمي عند استعمال الأسبرين معها.",advice:"لا تستخدم الجمع إلا عند الضرورة القصوى وفق المصدر، مع تقييم خطر القرحة والنزف والحاجة إلى حماية المعدة.",page:"136"},
+{drug:"NSAID",other:"NSAID آخر (استعمال أكثر من مضاد التهاب غير ستيرويدي معاً)",type:"زيادة خطر النزف أو أذى الجهاز الهضمي",effect:"يزداد احتمال الآثار الجانبية عند استخدام أكثر من NSAID معاً.",advice:"تجنب الجمع بين مضادين من هذه المجموعة.",page:"136"},
+{drug:"Colchicine",other:"Statins (أدوية خفض الدهون)",type:"زيادة السمية أو الآثار الجانبية",effect:"قد تزداد الاعتلالات العضلية/العصبية العضلية المرتبطة بالكولشيسين عند تناوله مع أدوية أخرى قد تسبب اعتلالاً عضلياً مثل الستاتينات.",advice:"راقب ألم أو ضعف العضلات، وقيّم وظائف الكلى وعوامل الخطورة.",page:"141"},
+{drug:"Colchicine",other:"Clarithromycin",type:"زيادة السمية أو الآثار الجانبية",effect:"الكلاريثروميسين مثبط قوي لـ CYP3A4؛ قد يرفع تركيز الكولشيسين في البلازما ويزيد احتمال السمية.",advice:"استخدم بحذر شديد؛ قد تكون هناك حاجة إلى خفض جرعة الكولشيسين أو تجنب المشاركة حسب الحالة.",page:"141"},
+{drug:"Colchicine",other:"مثبطات P-glycoprotein أو مثبطات CYP3A4 القوية",type:"زيادة السمية أو الآثار الجانبية",effect:"قد يرتفع تركيز الكولشيسين في البلازما ويزداد خطر السمية.",advice:"قد يلزم خفض جرعة الكولشيسين؛ راجع مرجعاً علاجياً حديثاً قبل الجمع.",page:"141"}
+];
+const list=document.getElementById('list'), search=document.getElementById('search'), category=document.getElementById('category'), count=document.getElementById('count');
+function render(){
+ const q=search.value.trim().toLowerCase(), c=category.value;
+ const rows=interactions.filter(x=>(!c||x.type===c)&&(!q||(x.drug+" "+x.other+" "+x.effect+" "+x.advice).toLowerCase().includes(q)));
+ count.textContent="عدد النتائج: "+rows.length+" من "+interactions.length;
+ list.innerHTML=rows.map(x=>`<article class="entry"><span class="tag">${x.type}</span><h2>${x.drug}</h2><div class="pair">يتداخل مع: ${x.other}</div><p><strong>التأثير:</strong> ${x.effect}</p><p><strong>التوصية المذكورة/المستفادة من المصدر:</strong> ${x.advice}</p><div class="meta">موضع المعلومة في الدليل: الصفحة المطبوعة ${x.page}</div></article>`).join('')||'<div class="note">ماكو نتائج مطابقة للبحث.</div>';
+}
+search.addEventListener('input',render);category.addEventListener('change',render);render();
+</script>
+</body>
+</html>

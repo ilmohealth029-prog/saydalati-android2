@@ -1,94 +1,283 @@
-/* شاشة الترحيب */
-.onboarding{
- position:fixed;
- inset:0;
- z-index:9999;
- background:linear-gradient(160deg,#dff3ff,#f8fcff);
- display:flex;
- align-items:center;
- justify-content:center;
- padding:18px;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صيدليتي</title>
+
+<style>
+* {
+  box-sizing: border-box;
 }
-.onboarding.hidden{
- display:none;
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4fbff;
+  color: #183b4a;
 }
-.onboard-card{
- width:100%;
- max-width:520px;
- min-height:85vh;
- background:white;
- border-radius:30px;
- padding:25px;
- display:flex;
- flex-direction:column;
- align-items:center;
- text-align:center;
- box-shadow:0 15px 40px #317eae33;
+
+#onboarding {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: linear-gradient(160deg, #eaf9ff, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
 }
-.onboard-skip{
- align-self:flex-start;
- border:0;
- background:#eaf6ff;
- color:#39759f;
- border-radius:20px;
- padding:9px 18px;
- font-weight:bold;
+
+#onboarding.hidden {
+  display: none;
 }
-.onboard-visual{
- font-size:120px;
- margin:35px 0;
- animation:float 3s infinite ease-in-out;
+
+.onboard-card {
+  width: 100%;
+  max-width: 430px;
+  text-align: center;
+  background: white;
+  border-radius: 28px;
+  padding: 32px 22px;
+  box-shadow: 0 12px 40px rgba(8,127,168,.12);
 }
-@keyframes float{
- 50%{transform:translateY(-12px)}
+
+.onboard-icon {
+  font-size: 76px;
+  margin-bottom: 22px;
 }
-.onboard-card h2{
- color:#123f75;
- font-size:30px;
+
+.onboard-card h2 {
+  color: #087fa8;
+  font-size: 27px;
+  margin-bottom: 15px;
 }
-.onboard-card h2 span{
- color:#0786d4;
+
+.onboard-card p {
+  color: #526b78;
+  font-size: 17px;
+  line-height: 1.9;
+  min-height: 90px;
 }
-.onboard-card p{
- color:#527493;
- line-height:2;
- font-size:16px;
+
+.intro-dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin: 25px 0;
 }
-.onboard-dots{
- display:flex;
- gap:10px;
- margin:25px;
+
+.intro-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c8e8f2;
 }
-.onboard-dots i{
- width:10px;
- height:10px;
- border-radius:20px;
- background:#c9e2f2;
+
+.intro-dot.active {
+  width: 25px;
+  border-radius: 10px;
+  background: #087fa8;
 }
-.onboard-dots i.active{
- width:27px;
- background:#078bd5;
+
+.intro-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
-.onboard-actions{
- display:flex;
- gap:10px;
- width:100%;
- margin-top:auto;
+
+.intro-buttons button {
+  border: none;
+  border-radius: 14px;
+  padding: 13px 22px;
+  font-size: 16px;
+  cursor: pointer;
 }
-.onboard-next{
- flex:1;
- background:#087fd0;
- color:white;
- border:0;
- border-radius:15px;
- padding:14px;
- font-size:17px;
- font-weight:bold;
+
+#introNext {
+  background: #087fa8;
+  color: white;
+  flex: 1;
 }
-.onboard-back{
- background:#edf7ff;
- color:#39759f;
- border:0;
- border-radius:15px;
- padding:14px;
+
+#introBack {
+  background: #eaf4f8;
+  color: #087fa8;
 }
+
+#skipIntro {
+  background: transparent;
+  color: #78909c;
+  margin-top: 14px;
+}
+
+.home {
+  padding: 25px 18px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.home h1 {
+  color: #087fa8;
+}
+
+.home p {
+  line-height: 1.8;
+}
+
+.menu-card {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  margin: 13px 0;
+  box-shadow: 0 5px 18px rgba(8,127,168,.07);
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="onboarding">
+  <div class="onboard-card">
+
+    <div class="onboard-icon" id="introEmoji">💊</div>
+
+    <h2 id="introTitle">أهلاً بك في صيدليتي</h2>
+
+    <p id="introText">
+      رحلتك التعليمية في عالم الصيدلة تبدأ من هنا.
+      تعلّم، اختبر معلوماتك، وطوّر مهاراتك الصيدلانية.
+    </p>
+
+    <div class="intro-dots" id="introDots">
+      <span class="intro-dot active"></span>
+      <span class="intro-dot"></span>
+      <span class="intro-dot"></span>
+      <span class="intro-dot"></span>
+    </div>
+
+    <div class="intro-buttons">
+      <button id="introBack" style="display:none;">السابق</button>
+      <button id="introNext">التالي</button>
+    </div>
+
+    <button id="skipIntro">تخطي المقدمة</button>
+
+  </div>
+</div>
+
+<!-- الواجهة التجريبية -->
+<main class="home">
+  <h1>💊 صيدليتي</h1>
+  <p>مرحباً بك في رحلتك التعليمية الصيدلانية.</p>
+
+  <div class="menu-card">💊 مكتبة الأدوية</div>
+  <div class="menu-card">🧠 الكيسات الصيدلانية</div>
+  <div class="menu-card">🔬 التداخلات الدوائية</div>
+  <div class="menu-card">👨‍⚕️ المبرمجون</div>
+</main>
+
+<script>
+(function () {
+
+  const slides = [
+    {
+      emoji: "💊",
+      title: "أهلاً بك في صيدليتي",
+      text: "منصة تعليمية صيدلانية تساعدك على تطوير معلوماتك ومهاراتك خطوة بخطوة."
+    },
+    {
+      emoji: "📚",
+      title: "مكتبة الأدوية",
+      text: "تعرّف على الأدوية واستخداماتها وتصنيفاتها حسب أجهزة الجسم بطريقة سهلة ومنظمة."
+    },
+    {
+      emoji: "🧠",
+      title: "اختبر معلوماتك",
+      text: "تدرّب على الكيسات الصيدلانية واكتشف الإجابات والتفسيرات لتقوية خبرتك."
+    },
+    {
+      emoji: "🎓",
+      title: "مستقبلك يبدأ هنا",
+      text: "اجعل صيدليتي رفيقك في رحلة التعلم والتطور لتصبح صيدلانياً أكثر كفاءة."
+    }
+  ];
+
+  const onboarding = document.getElementById("onboarding");
+  const emoji = document.getElementById("introEmoji");
+  const title = document.getElementById("introTitle");
+  const description = document.getElementById("introText");
+  const dots = document.querySelectorAll(".intro-dot");
+  const nextButton = document.getElementById("introNext");
+  const backButton = document.getElementById("introBack");
+  const skipButton = document.getElementById("skipIntro");
+
+  let currentSlide = 0;
+
+  function finishIntro() {
+    onboarding.classList.add("hidden");
+
+    try {
+      localStorage.setItem("saydalati_intro_seen", "true");
+    } catch (error) {
+      console.log("تعذر حفظ حالة المقدمة");
+    }
+  }
+
+  function showSlide(index) {
+    currentSlide = index;
+
+    emoji.textContent = slides[index].emoji;
+    title.textContent = slides[index].title;
+    description.textContent = slides[index].text;
+
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle("active", i === index);
+    });
+
+    backButton.style.display =
+      index === 0 ? "none" : "inline-block";
+
+    nextButton.textContent =
+      index === slides.length - 1
+        ? "ابدأ رحلتك"
+        : "التالي";
+  }
+
+  nextButton.addEventListener("click", function() {
+    if (currentSlide < slides.length - 1) {
+      showSlide(currentSlide + 1);
+    } else {
+      finishIntro();
+    }
+  });
+
+  backButton.addEventListener("click", function() {
+    if (currentSlide > 0) {
+      showSlide(currentSlide - 1);
+    }
+  });
+
+  skipButton.addEventListener("click", finishIntro);
+
+  let alreadySeen = false;
+
+  try {
+    alreadySeen =
+      localStorage.getItem("saydalati_intro_seen") === "true";
+  } catch (error) {
+    alreadySeen = false;
+  }
+
+  if (alreadySeen) {
+    onboarding.classList.add("hidden");
+  } else {
+    showSlide(0);
+  }
+
+})();
+</script>
+
+</body>
+</html>

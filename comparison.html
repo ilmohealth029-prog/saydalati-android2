@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087fa8">
+<title>صيدليتي | خارطة المقارنة</title>
+<style>
+:root{--blue:#087fa8;--cyan:#20b8d5;--light:#eaf9ff;--ink:#163746;--muted:#607d8b}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#eaf9ff,#f7fcff);font-family:Tahoma,Arial,sans-serif;color:var(--ink)}
+header{background:linear-gradient(135deg,#087fa8,#20b8d5);color:white;padding:24px 16px 28px;text-align:center;border-radius:0 0 28px 28px;box-shadow:0 5px 18px #087fa833}
+header h1{margin:0 0 7px;font-size:26px}header p{margin:0;font-size:13px;line-height:1.8}
+.wrap{max-width:980px;margin:20px auto;padding:0 14px 35px}
+.intro{background:#fff;border:1px solid #d7eff7;border-radius:18px;padding:15px;margin-bottom:15px;line-height:1.9;font-size:13px}
+.pickers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pick{background:white;border:1px solid #d7eff7;border-radius:18px;padding:15px;box-shadow:0 5px 18px #087fa812;position:relative}
+.pick h2{font-size:16px;margin:0 0 10px;color:var(--blue)}
+input{width:100%;border:1px solid #c8e7f1;border-radius:13px;background:white;padding:13px;font:inherit;color:var(--ink);outline:none;direction:ltr;text-align:left}
+input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #20b8d522}
+.suggestions{position:absolute;z-index:10;left:12px;right:12px;top:100px;background:#fff;border:1px solid #cdeaf4;border-radius:13px;box-shadow:0 8px 22px #16445b22;max-height:230px;overflow:auto;display:none}
+.suggestions.show{display:block}
+.suggestion{padding:11px 13px;border-bottom:1px solid #edf5f8;cursor:pointer;direction:ltr;text-align:left}
+.suggestion:last-child{border:0}.suggestion:active,.suggestion:hover{background:#eaf9ff}
+.suggestion small{display:block;color:#688394;font-size:11px;direction:rtl;text-align:right}
+.selected{margin-top:10px;background:#eaf9ff;border-radius:10px;padding:8px;font-size:12px;min-height:34px;color:#087fa8}
+.actions{display:flex;gap:9px;margin:16px 0}
+.btn{border:0;border-radius:13px;padding:13px 18px;font:700 15px Tahoma;cursor:pointer}
+.primary{background:linear-gradient(90deg,#0879cb,#19a6e5);color:#fff;flex:1}
+.secondary{background:#e5f3f8;color:#176080}
+#results{display:none;margin-top:18px}
+.result-head{background:#fff;border:1px solid #d7eff7;border-radius:17px;padding:15px;margin-bottom:12px}
+.result-head h2{margin:0;color:var(--blue);font-size:20px}
+.result-head p{margin:6px 0 0;color:var(--muted);font-size:12px}
+.compare{background:#fff;border:1px solid #d7eff7;border-radius:16px;overflow:hidden;margin:12px 0;box-shadow:0 4px 15px #087fa80d}
+.compare h3{margin:0;background:#eaf9ff;color:#087fa8;padding:12px 14px;font-size:15px}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th,td{padding:12px 10px;border-bottom:1px solid #edf3f6;vertical-align:top;text-align:right;font-size:13px;line-height:1.8;overflow-wrap:anywhere}
+th{color:#087fa8;background:#f8fcfe}
+th:first-child,td:first-child{width:26%;font-weight:700;color:#315b70}
+.summary{padding:14px;line-height:1.9;font-size:13px}
+.tag{display:inline-block;background:#e8f7fc;color:#087fa8;padding:4px 9px;border-radius:30px;font-size:11px;margin:3px}
+.notice{font-size:12px;line-height:1.9;color:#715c27;background:#fff8e7;border:1px solid #f4dfaa;border-radius:14px;padding:12px;margin-top:15px}
+.back{display:block;text-decoration:none;background:var(--blue);color:white;text-align:center;padding:14px;border-radius:14px;margin-top:20px}
+.status{font-size:12px;color:#52758a;margin:8px 2px}
+@media(max-width:620px){.pickers{grid-template-columns:1fr}th,td{padding:9px 7px;font-size:12px}th:first-child,td:first-child{width:25%}.wrap{padding-bottom:25px}}
+</style>
+</head>
+<body>
+<header><h1>⚖️ خارطة المقارنة</h1><p>Drug Comparison · قارن بين دواءين بطريقة علمية واضحة</p></header>
+<main class="wrap">
+<div class="intro">اختر دواءين من مكتبة صيدليتي. اكتب أول حروف الاسم العلمي لتظهر لك اقتراحات مباشرة، ثم اضغط «ابدأ المقارنة» لعرض الفروقات والتشابهات.</div>
+<div class="status" id="status">جارٍ تحميل قاعدة الأدوية من مكتبة صيدليتي…</div>
+<section class="pickers">
+<div class="pick"><h2>💊 الدواء الأول</h2><input id="leftInput" type="search" placeholder="Type drug name..." autocomplete="off"><div class="suggestions" id="leftSuggest"></div><div class="selected" id="leftSelected">لم يتم اختيار دواء بعد</div></div>
+<div class="pick"><h2>💊 الدواء الثاني</h2><input id="rightInput" type="search" placeholder="Type drug name..." autocomplete="off"><div class="suggestions" id="rightSuggest"></div><div class="selected" id="rightSelected">لم يتم اختيار دواء بعد</div></div>
+</section>
+<div class="actions"><button class="btn primary" id="compareBtn">⚖️ ابدأ المقارنة</button><button class="btn secondary" id="resetBtn">مسح</button></div>
+<div id="error" style="color:#b42318;font-size:13px"></div><section id="results"></section>
+<div class="notice"><b>تنبيه علمي:</b> المقارنة تعتمد على البيانات المتاحة حالياً في مكتبة الأدوية المرفقة بالتطبيق. الحقول غير الموجودة في قاعدة البيانات ستظهر «غير متوفر في قاعدة البيانات» ولا يتم تخمينها. المعلومات تعليمية ولا تغني عن المراجع الدوائية المعتمدة أو التقييم السريري.</div>
+<a class="back" href="index.html">العودة إلى الصفحة الرئيسية</a>
+</main>
+<script>
+let drugs=[];
+let selectedLeft=null,selectedRight=null;
+const $=id=>document.getElementById(id);
+const fields=[
+["الاسم العلمي","name"],["النظام / الجهاز","system"],["التصنيف الدوائي","class"],
+["Mechanism of Action — آلية العمل","mechanism"],["Site of Action — موقع التأثير","site"],
+["Pharmacological Action — التأثير الدوائي","effects"],["Indications / الاستخدامات","description"],
+["Dosage — الجرعات","dosage"],["Pharmacokinetics — الحرائك الدوائية","pharmacokinetics"],
+["Onset of Action — بداية المفعول","onset"],["Duration of Action — مدة المفعول","duration"],
+["Side Effects — الآثار الجانبية","sideEffects"],["Contraindications — موانع الاستعمال","contraindications"],
+["Drug Interactions — التداخلات الدوائية","interactions"],["Precautions — الاحتياطات","precautions"],
+["Pregnancy & Lactation — الحمل والرضاعة","pregnancy"],["Toxicity — السمية","toxicity"],
+["Overdose Management — تدبير الجرعة الزائدة","overdose"]
+];
+function norm(s){return String(s||"").toLowerCase().trim().replace(/[–—]/g,"-")}
+function val(d,k){return d&&d[k]!==undefined&&d[k]!==null&&String(d[k]).trim()?String(d[k]):"غير متوفر في قاعدة البيانات"}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function setup(side){
+ const input=$(side+"Input"),box=$(side+"Suggest"),chosen=$(side+"Selected");
+ input.addEventListener("input",()=>{
+  const q=norm(input.value);box.innerHTML="";
+  if(!q){box.classList.remove("show");if(side==="left")selectedLeft=null;else selectedRight=null;chosen.textContent="لم يتم اختيار دواء بعد";return}
+  const matches=drugs.filter(d=>norm(d.name).startsWith(q)||norm(d.name).includes(q)).slice(0,15);
+  if(!matches.length){box.innerHTML='<div class="suggestion">لا توجد نتائج مطابقة</div>'}
+  else matches.forEach(d=>{
+   const el=document.createElement("div");el.className="suggestion";
+   const name=document.createElement("b");name.textContent=d.name;
+   const small=document.createElement("small");small.textContent=d.system||"—";
+   el.append(name,small);
+   el.addEventListener("click",()=>{
+    if(side==="left")selectedLeft=d;else selectedRight=d;
+    input.value=d.name;chosen.textContent="✓ "+d.name;box.classList.remove("show");$("error").textContent="";
+   });
+   box.appendChild(el);
+  });
+  box.classList.add("show");
+ });
+ document.addEventListener("click",e=>{if(!box.contains(e.target)&&e.target!==input)box.classList.remove("show")});
+}
+async function loadDrugs(){
+ try{
+  const response=await fetch("drugs.html",{cache:"no-store"});
+  if(!response.ok)throw new Error("تعذر فتح drugs.html");
+  const source=await response.text();
+  const match=source.match(/const\s+drugs\s*=\s*(\[[\s\S]*?\]);/);
+  if(!match)throw new Error("لم يتم العثور على بيانات الأدوية داخل drugs.html");
+  drugs=JSON.parse(match[1]);
+  if(!Array.isArray(drugs)||!drugs.length)throw new Error("قاعدة الأدوية فارغة");
+  $("status").textContent="تم تحميل "+drugs.length+" دواء من مكتبة صيدليتي بنجاح.";
+  setup("left");setup("right");
+ }catch(error){
+  $("status").textContent="لم يتم تحميل قاعدة الأدوية. تأكد من وجود drugs.html بجانب comparison.html وأنك تفتح الموقع عبر GitHub Pages أو خادم محلي.";
+  console.error(error);
+ }
+}
+$("compareBtn").addEventListener("click",()=>{
+ $("error").textContent="";
+ if(!drugs.length){$("error").textContent="قاعدة الأدوية لم تُحمّل بعد.";return}
+ if(!selectedLeft||!selectedRight){$("error").textContent="يرجى اختيار الدواء الأول والدواء الثاني من قائمة الاقتراحات.";return}
+ if(selectedLeft.name===selectedRight.name){$("error").textContent="اختر دواءين مختلفين للمقارنة.";return}
+ const a=selectedLeft,b=selectedRight;
+ const rows=fields.map(([label,key])=>'<tr><td>'+esc(label)+'</td><td>'+esc(val(a,key))+'</td><td>'+esc(val(b,key))+'</td></tr>').join("");
+ let similarities=[];
+ if(a.class&&b.class&&a.class===b.class)similarities.push("ينتميان إلى التصنيف الدوائي نفسه: "+a.class);
+ if(a.system&&b.system&&a.system===b.system)similarities.push("يُدرجان ضمن النظام نفسه: "+a.system);
+ if(a.mechanism&&a.mechanism===b.mechanism)similarities.push("آلية العمل المسجلة متطابقة في قاعدة البيانات.");
+ if(!similarities.length)similarities.push("لا توجد أوجه تشابه مؤكدة كافية في الحقول المشتركة المتاحة.");
+ let differences=[];
+ if(a.class!==b.class)differences.push("التصنيف الدوائي مختلف.");
+ if(a.system!==b.system)differences.push("النظام الدوائي المسجل مختلف.");
+ if(a.mechanism!==b.mechanism)differences.push("آلية العمل المسجلة مختلفة أو غير متطابقة.");
+ $("results").innerHTML='<div class="result-head"><h2>نتيجة المقارنة</h2><p>'+esc(a.name)+' مقابل '+esc(b.name)+'</p><span class="tag">'+drugs.length+' دواء ضمن قاعدة البحث</span></div><div class="compare"><h3>المقارنة التفصيلية</h3><table><thead><tr><th>عنصر المقارنة</th><th>'+esc(a.name)+'</th><th>'+esc(b.name)+'</th></tr></thead><tbody>'+rows+'</tbody></table></div><div class="compare"><h3>أوجه التشابه</h3><div class="summary">'+similarities.map(x=>'• '+esc(x)).join("<br>")+'</div></div><div class="compare"><h3>أبرز الاختلافات المسجلة</h3><div class="summary">'+(differences.length?differences.map(x=>'• '+esc(x)).join("<br>"):"لا تظهر اختلافات مؤكدة في التصنيف والنظام والآلية ضمن البيانات المتاحة.")+'</div></div><div class="compare"><h3>Clinical Summary — الملخص السريري</h3><div class="summary">الدواء الأول: <b>'+esc(a.name)+'</b> — '+esc(val(a,"description"))+'<br><br>الدواء الثاني: <b>'+esc(b.name)+'</b> — '+esc(val(b,"description"))+'<br><br><b>ملاحظة:</b> هذا ملخص تعليمي مستخرج من أوصاف المكتبة، وليس توصية باختيار أحد الدواءين لمريض بعينه.</div></div>';
+ $("results").style.display="block";$("results").scrollIntoView({behavior:"smooth",block:"start"});
+});
+$("resetBtn").addEventListener("click",()=>{
+ selectedLeft=selectedRight=null;
+ $("leftInput").value=$("rightInput").value="";
+ $("leftSelected").textContent=$("rightSelected").textContent="لم يتم اختيار دواء بعد";
+ $("leftSuggest").classList.remove("show");$("rightSuggest").classList.remove("show");
+ $("results").style.display="none";$("results").innerHTML="";$("error").textContent="";
+});
+loadDrugs();
+</script>
+</body>
+</html>

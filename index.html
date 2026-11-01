@@ -142,5 +142,151 @@ function notify(msg){const t=document.getElementById('toast');t.textContent=msg;
 })();
 
 </script>
+  <style>
+#introScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: linear-gradient(160deg,#eaf9ff,#ffffff,#d9f3ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  font-family: Arial, sans-serif;
+  direction: rtl;
+}
+#introScreen.hidden { display:none; }
+.intro-card {
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  background:white;
+  border-radius:28px;
+  padding:30px 22px;
+  box-shadow:0 12px 35px #087fa822;
+}
+.intro-icon {
+  font-size:75px;
+  margin:15px;
+}
+.intro-card h2 {
+  color:#087fa8;
+  font-size:27px;
+}
+.intro-card p {
+  color:#536777;
+  font-size:17px;
+  line-height:1.9;
+  min-height:65px;
+}
+.intro-dots {
+  color:#20b8d5;
+  letter-spacing:8px;
+  margin:20px;
+}
+.intro-buttons {
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.intro-buttons button {
+  border:0;
+  border-radius:15px;
+  padding:13px 22px;
+  font-size:16px;
+  cursor:pointer;
+}
+#introNext,#introStart {
+  background:#087fa8;
+  color:white;
+}
+#introSkip,#introPrev {
+  background:#eaf9ff;
+  color:#087fa8;
+}
+</style>
+
+<div id="introScreen" class="hidden">
+  <div class="intro-card">
+    <div class="intro-icon" id="introIcon">💊</div>
+    <h2 id="introTitle">أهلاً بك في صيدليتي</h2>
+    <p id="introText">رحلتك التعليمية في عالم الصيدلة تبدأ من هنا.</p>
+
+    <div class="intro-dots" id="introDots">● ○ ○ ○</div>
+
+    <div class="intro-buttons">
+      <button id="introSkip" onclick="finishIntro()">تخطي</button>
+      <button id="introPrev" onclick="changeIntro(-1)">السابق</button>
+      <button id="introNext" onclick="changeIntro(1)">التالي</button>
+      <button id="introStart" onclick="finishIntro()" style="display:none">
+        ابدأ رحلتك 🚀
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const slides = [
+    {
+      icon: "👩🏻‍⚕️",
+      title: "أهلاً بك في صيدليتي",
+      text: "منصتك التعليمية لتطوير مهاراتك ومعرفتك في عالم الصيدلة."
+    },
+    {
+      icon: "💊",
+      title: "مكتبة الأدوية",
+      text: "تعرّف على الأدوية واستخداماتها ومعلوماتها المهمة بطريقة سهلة."
+    },
+    {
+      icon: "🧠",
+      title: "اختبر معلوماتك",
+      text: "تدرّب على الكيسات والتداخلات الدوائية وطوّر تفكيرك الصيدلاني."
+    },
+    {
+      icon: "🎓",
+      title: "مستقبلك يبدأ هنا",
+      text: "تعلّم كل يوم، واكتسب الخبرة، وابدأ رحلتك لتصبح صيدلانياً متميزاً."
+    }
+  ];
+
+  let current = 0;
+  const screen = document.getElementById("introScreen");
+
+  function showSlide() {
+    const slide = slides[current];
+    document.getElementById("introIcon").textContent = slide.icon;
+    document.getElementById("introTitle").textContent = slide.title;
+    document.getElementById("introText").textContent = slide.text;
+    document.getElementById("introDots").textContent =
+      slides.map((_, i) => i === current ? "●" : "○").join(" ");
+
+    document.getElementById("introPrev").style.display =
+      current === 0 ? "none" : "inline-block";
+
+    document.getElementById("introNext").style.display =
+      current === slides.length - 1 ? "none" : "inline-block";
+
+    document.getElementById("introStart").style.display =
+      current === slides.length - 1 ? "inline-block" : "none";
+  }
+
+  window.changeIntro = function (direction) {
+    current = Math.max(0, Math.min(slides.length - 1, current + direction));
+    showSlide();
+  };
+
+  window.finishIntro = function () {
+    localStorage.setItem("saydalati_intro_seen", "yes");
+    screen.classList.add("hidden");
+  };
+
+  if (!localStorage.getItem("saydalati_intro_seen")) {
+    screen.classList.remove("hidden");
+    showSlide();
+  }
+})();
+</script>
 </body>
 </html>

@@ -124,10 +124,6 @@ jobs:
                   versionName '1.0'
               }
           }
-
-          dependencies {
-              implementation 'androidx.webkit:webkit:1.12.1'
-          }
           EOF
 
           cat > app/src/main/AndroidManifest.xml <<'EOF'
@@ -158,46 +154,93 @@ jobs:
 
           import android.app.Activity;
           import android.os.Bundle;
+          import android.net.Uri;
           import android.webkit.WebView;
+          import android.webkit.WebViewClient;
           import android.webkit.WebChromeClient;
           import android.webkit.WebSettings;
           import android.webkit.WebResourceRequest;
           import android.webkit.WebResourceResponse;
-          import android.net.Uri;
+          import android.webkit.MimeTypeMap;
 
-          import androidx.webkit.WebViewAssetLoader;
-          import androidx.webkit.WebViewClientCompat;
+          import java.io.InputStream;
+          import java.io.IOException;
 
           public class MainActivity extends Activity {
               private WebView webView;
-              private WebViewAssetLoader assetLoader;
+
+              private WebResourceResponse loadAsset(String url) {
+                  Uri uri = Uri.parse(url);
+
+                  if (!"appassets.androidplatform.net".equals(uri.getHost())) {
+                      return null;
+                  }
+
+                  String path = uri.getPath();
+
+                  if (path == null || !path.startsWith("/assets/")) {
+                      return null;
+                  }
+
+                  String fileName = path.substring("/assets/".length());
+
+                  if (fileName.isEmpty() || fileName.contains("..")) {
+                      return null;
+                  }
+
+                  try {
+                      InputStream stream = getAssets().open(fileName);
+
+                      String extension =
+                          MimeTypeMap.getFileExtensionFromUrl(fileName);
+
+                      String mime =
+                          MimeTypeMap.getSingleton()
+                              .getMimeTypeFromExtension(extension);
+
+                      if (mime == null) {
+                          mime = "application/octet-stream";
+                      }
+
+                      String encoding = null;
+
+                      if (mime.startsWith("text/")
+                              || mime.contains("javascript")
+                              || mime.contains("json")
+                              || mime.contains("xml")) {
+                          encoding = "UTF-8";
+                      }
+
+                      return new WebResourceResponse(
+                          mime,
+                          encoding,
+                          stream
+                      );
+
+                  } catch (IOException e) {
+                      return null;
+                  }
+              }
 
               @Override
               protected void onCreate(Bundle savedInstanceState) {
                   super.onCreate(savedInstanceState);
-
-                  assetLoader = new WebViewAssetLoader.Builder()
-                      .addPathHandler(
-                          "/assets/",
-                          new WebViewAssetLoader.AssetsPathHandler(this)
-                      )
-                      .build();
 
                   webView = new WebView(this);
 
                   WebSettings settings = webView.getSettings();
                   settings.setJavaScriptEnabled(true);
                   settings.setDomStorageEnabled(true);
-                  settings.setAllowContentAccess(true);
                   settings.setAllowFileAccess(false);
+                  settings.setAllowContentAccess(true);
 
-                  webView.setWebViewClient(new WebViewClientCompat() {
+                  webView.setWebViewClient(new WebViewClient() {
                       @Override
                       public WebResourceResponse shouldInterceptRequest(
                               WebView view,
                               WebResourceRequest request) {
-                          return assetLoader.shouldInterceptRequest(
-                              request.getUrl()
+                          return loadAsset(
+                              request.getUrl().toString()
                           );
                       }
 
@@ -205,9 +248,7 @@ jobs:
                       public WebResourceResponse shouldInterceptRequest(
                               WebView view,
                               String url) {
-                          return assetLoader.shouldInterceptRequest(
-                              Uri.parse(url)
-                          );
+                          return loadAsset(url);
                       }
                   });
 

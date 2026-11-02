@@ -1,4 +1,3 @@
-
 name: Build Saydalati APK
 
 on:
@@ -173,9 +172,9 @@ jobs:
                   settings.setDomStorageEnabled(true);
                   settings.setAllowFileAccess(true);
                   settings.setAllowContentAccess(true);
-settings.setAllowFileAccessFromFileURLs(true);
+                  settings.setAllowFileAccessFromFileURLs(true);
 
-                webView.setWebViewClient(new WebViewClient());
+                  webView.setWebViewClient(new WebViewClient());
                   webView.setWebChromeClient(new WebChromeClient());
 
                   setContentView(webView);

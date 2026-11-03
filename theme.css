@@ -1,0 +1,238 @@
+/* ===== SAYDALATI GLOBAL DARK MODE ===== */
+
+body.dark {
+  --bg: #101c25;
+  --surface: #192a36;
+  --text: #e8f4f8;
+  --ink: #e8f4f8;
+  --muted: #a5b8c4;
+  --line: #2b414f;
+  --soft: #203b49;
+
+  background: #101c25 !important;
+  color: #e8f4f8 !important;
+}
+
+/* البطاقات */
+body.dark .hero,
+body.dark .tile,
+body.dark .stat,
+body.dark .drug,
+body.dark .card,
+body.dark .stats,
+body.dark .tools,
+body.dark .item,
+body.dark .pick,
+body.dark .compare,
+body.dark .result-head,
+body.dark .profile,
+body.dark .group,
+body.dark .company,
+body.dark .panel,
+body.dark .intro {
+  background: #192a36 !important;
+  color: #e8f4f8 !important;
+  border-color: #2b414f !important;
+}
+
+/* حقول البحث والاختيار */
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #203542 !important;
+  color: #e8f4f8 !important;
+  border-color: #3a5665 !important;
+}
+
+body.dark input::placeholder {
+  color: #a5b8c4 !important;
+}
+
+/* النصوص الثانوية */
+body.dark .small,
+body.dark .meta,
+body.dark .cls,
+body.dark footer,
+body.dark .muted {
+  color: #a5b8c4 !important;
+}
+
+/* أزرار الخيارات */
+body.dark .opt {
+  background: #203542 !important;
+  color: #e8f4f8 !important;
+  border-color: #3a5665 !important;
+}
+
+/* الملاحظات */
+body.dark .notice,
+body.dark .hint {
+  background: #393321 !important;
+  color: #f1dfad !important;
+  border-color: #65552e !important;
+}
+
+/* الشريط السفلي */
+body.dark .bottom {
+  background: #152631 !important;
+  border-color: #2b414f !important;
+}
+
+/* الفواصل */
+body.dark th,
+body.dark td {
+  border-color: #2b414f !important;
+}
+
+/* العناوين */
+body.dark .drug h2,
+body.dark .section-title,
+body.dark .field b {
+  color: #62c9e6 !important;
+}
+
+
+/* Approved Saydalati pale-blue interface theme */
+:root {
+  --syd-navy: #103e79;
+  --syd-blue: #087fd0;
+  --syd-sky: #e8f6ff;
+  --syd-mint: #e3f9df;
+}
+body:not(.dark) {
+  background: linear-gradient(180deg, #dff2ff, #f8fcff 48%, #eaf7ff) !important;
+  color: #153b68;
+}
+body:not(.dark) header {
+  background: linear-gradient(115deg, #c7eaff, #fff 56%, #d9f1ff) !important;
+  color: #103e79 !important;
+  border: 1px solid #fff;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 10px 26px #5ba9dc25;
+}
+body:not(.dark) header a { color: #087fd0 !important; }
+body:not(.dark) header h1,
+body:not(.dark) .section-title,
+body:not(.dark) .panel h2,
+body:not(.dark) .member-info h2 {
+  color: #103e79 !important;
+}
+body:not(.dark) .panel,
+body:not(.dark) .card,
+body:not(.dark) .drug,
+body:not(.dark) .member,
+body:not(.dark) .compare,
+body:not(.dark) .item,
+body:not(.dark) .pick,
+body:not(.dark) .result-head,
+body:not(.dark) .profile,
+body:not(.dark) .group,
+body:not(.dark) .company,
+body:not(.dark) .intro {
+  background: linear-gradient(145deg, #fff, #f2faff) !important;
+  color: #153b68;
+  border: 1px solid #fff !important;
+  border-radius: 24px !important;
+  box-shadow: 0 8px 22px #3886a719;
+}
+body:not(.dark) .stat,
+body:not(.dark) .stats {
+  background: linear-gradient(135deg, #ffffff, #f1f9ff) !important;
+  border-color: #d9efff !important;
+  border-radius: 20px !important;
+}
+body:not(.dark) .num,
+body:not(.dark) .stat strong,
+body:not(.dark) .drug h2,
+body:not(.dark) .detail b {
+  color: #087fd0 !important;
+}
+body:not(.dark) .member-icon {
+  background: #e3f3ff !important;
+  color: #087fd0 !important;
+  border-radius: 22px !important;
+}
+body:not(.dark) input,
+body:not(.dark) select,
+body:not(.dark) textarea {
+  background: #fff !important;
+  color: #153b68 !important;
+  border: 1px solid #c9e8fa !important;
+  border-radius: 15px !important;
+}
+body:not(.dark) input:focus,
+body:not(.dark) select:focus,
+body:not(.dark) textarea:focus {
+  border-color: #42a9df !important;
+  box-shadow: 0 0 0 3px #42a9df26 !important;
+}
+body:not(.dark) button:not(.opt):not(.secondary):not(.danger),
+body:not(.dark) .back,
+body:not(.dark) .primary {
+  background: linear-gradient(100deg, #0879cb, #19a6e5) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 17px !important;
+  box-shadow: 0 6px 16px #087fd033;
+}
+body:not(.dark) .secondary,
+body:not(.dark) .opt {
+  background: #fff !important;
+  color: #174d78 !important;
+  border: 1px solid #cfe7f5 !important;
+  border-radius: 15px !important;
+}
+body:not(.dark) .opt.correct {
+  background: #e5f8e1 !important;
+  border: 2px solid #67bd79 !important;
+}
+body:not(.dark) .opt.wrong {
+  background: #fff0ef !important;
+  border: 2px solid #e28d86 !important;
+}
+body:not(.dark) .pill {
+  background: #e3f3ff !important;
+  color: #12669c !important;
+  border-radius: 999px !important;
+}
+body:not(.dark) .notice,
+body:not(.dark) .note,
+body:not(.dark) .hint {
+  background: #fff6df !important;
+  color: #6e5925 !important;
+  border-color: #f0dfa9 !important;
+  border-radius: 18px !important;
+}
+body:not(.dark) .feedback {
+  background: #eaf6ff !important;
+  border-radius: 16px !important;
+}
+body:not(.dark) .progress { background: #dceefa !important; }
+body:not(.dark) .bar {
+  background: linear-gradient(90deg, #087fd0, #27a9e7) !important;
+}
+body:not(.dark) footer { color: #6483a0 !important; }
+body.dark header {
+  background: linear-gradient(120deg, #17324b, #1e3e58) !important;
+  color: #e4f4ff !important;
+  border-color: #29435b !important;
+}
+body.dark .member,
+body.dark .member-info p,
+body.dark .stat,
+body.dark .stats {
+  color: #e4f4ff !important;
+}
+body.dark .member-icon {
+  background: #203d55 !important;
+  color: #77c8ee !important;
+}
+body.dark .progress { background: #263e52 !important; }
+@media (max-width: 550px) {
+  body:not(.dark) header { border-radius: 0 0 26px 26px; }
+  body:not(.dark) .panel,
+  body:not(.dark) .card,
+  body:not(.dark) .drug,
+  body:not(.dark) .member { border-radius: 21px !important; }
+}
+

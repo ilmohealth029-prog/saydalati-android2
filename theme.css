@@ -1,0 +1,412 @@
+/* ===== SAYDALATI GLOBAL DARK MODE ===== */
+
+body.dark {
+  --bg: #101c25;
+  --surface: #192a36;
+  --text: #e8f4f8;
+  --ink: #e8f4f8;
+  --muted: #a5b8c4;
+  --line: #2b414f;
+  --soft: #203b49;
+
+  background: #101c25 !important;
+  color: #e8f4f8 !important;
+}
+
+/* البطاقات */
+body.dark .hero,
+body.dark .tile,
+body.dark .stat,
+body.dark .drug,
+body.dark .card,
+body.dark .stats,
+body.dark .tools,
+body.dark .item,
+body.dark .pick,
+body.dark .compare,
+body.dark .result-head,
+body.dark .profile,
+body.dark .group,
+body.dark .company,
+body.dark .panel,
+body.dark .intro {
+  background: #192a36 !important;
+  color: #e8f4f8 !important;
+  border-color: #2b414f !important;
+}
+
+/* حقول البحث والاختيار */
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #203542 !important;
+  color: #e8f4f8 !important;
+  border-color: #3a5665 !important;
+}
+
+body.dark input::placeholder {
+  color: #a5b8c4 !important;
+}
+
+/* النصوص الثانوية */
+body.dark .small,
+body.dark .meta,
+body.dark .cls,
+body.dark footer,
+body.dark .muted {
+  color: #a5b8c4 !important;
+}
+
+/* أزرار الخيارات */
+body.dark .opt {
+  background: #203542 !important;
+  color: #e8f4f8 !important;
+  border-color: #3a5665 !important;
+}
+
+/* الملاحظات */
+body.dark .notice,
+body.dark .hint {
+  background: #393321 !important;
+  color: #f1dfad !important;
+  border-color: #65552e !important;
+}
+
+/* الشريط السفلي */
+body.dark .bottom {
+  background: #152631 !important;
+  border-color: #2b414f !important;
+}
+
+/* الفواصل */
+body.dark th,
+body.dark td {
+  border-color: #2b414f !important;
+}
+
+/* العناوين */
+body.dark .drug h2,
+body.dark .section-title,
+body.dark .field b {
+  color: #62c9e6 !important;
+}
+
+
+/* Approved Saydalati pale-blue interface theme */
+:root {
+  --syd-navy: #103e79;
+  --syd-blue: #087fd0;
+  --syd-sky: #e8f6ff;
+  --syd-mint: #e3f9df;
+}
+body:not(.dark) {
+  background: linear-gradient(180deg, #dff2ff, #f8fcff 48%, #eaf7ff) !important;
+  color: #153b68;
+}
+body:not(.dark) header {
+  background: linear-gradient(115deg, #c7eaff, #fff 56%, #d9f1ff) !important;
+  color: #103e79 !important;
+  border: 1px solid #fff;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 10px 26px #5ba9dc25;
+}
+body:not(.dark) header a { color: #087fd0 !important; }
+body:not(.dark) header h1,
+body:not(.dark) .section-title,
+body:not(.dark) .panel h2,
+body:not(.dark) .member-info h2 {
+  color: #103e79 !important;
+}
+body:not(.dark) .panel,
+body:not(.dark) .card,
+body:not(.dark) .drug,
+body:not(.dark) .member,
+body:not(.dark) .compare,
+body:not(.dark) .item,
+body:not(.dark) .pick,
+body:not(.dark) .result-head,
+body:not(.dark) .profile,
+body:not(.dark) .group,
+body:not(.dark) .company,
+body:not(.dark) .intro {
+  background: linear-gradient(145deg, #fff, #f2faff) !important;
+  color: #153b68;
+  border: 1px solid #fff !important;
+  border-radius: 24px !important;
+  box-shadow: 0 8px 22px #3886a719;
+}
+body:not(.dark) .stat,
+body:not(.dark) .stats {
+  background: linear-gradient(135deg, #ffffff, #f1f9ff) !important;
+  border-color: #d9efff !important;
+  border-radius: 20px !important;
+}
+body:not(.dark) .num,
+body:not(.dark) .stat strong,
+body:not(.dark) .drug h2,
+body:not(.dark) .detail b {
+  color: #087fd0 !important;
+}
+body:not(.dark) .member-icon {
+  background: #e3f3ff !important;
+  color: #087fd0 !important;
+  border-radius: 22px !important;
+}
+body:not(.dark) input,
+body:not(.dark) select,
+body:not(.dark) textarea {
+  background: #fff !important;
+  color: #153b68 !important;
+  border: 1px solid #c9e8fa !important;
+  border-radius: 15px !important;
+}
+body:not(.dark) input:focus,
+body:not(.dark) select:focus,
+body:not(.dark) textarea:focus {
+  border-color: #42a9df !important;
+  box-shadow: 0 0 0 3px #42a9df26 !important;
+}
+body:not(.dark) button:not(.opt):not(.secondary):not(.danger),
+body:not(.dark) .back,
+body:not(.dark) .primary {
+  background: linear-gradient(100deg, #0879cb, #19a6e5) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 17px !important;
+  box-shadow: 0 6px 16px #087fd033;
+}
+body:not(.dark) .secondary,
+body:not(.dark) .opt {
+  background: #fff !important;
+  color: #174d78 !important;
+  border: 1px solid #cfe7f5 !important;
+  border-radius: 15px !important;
+}
+body:not(.dark) .opt.correct {
+  background: #e5f8e1 !important;
+  border: 2px solid #67bd79 !important;
+}
+body:not(.dark) .opt.wrong {
+  background: #fff0ef !important;
+  border: 2px solid #e28d86 !important;
+}
+body:not(.dark) .pill {
+  background: #e3f3ff !important;
+  color: #12669c !important;
+  border-radius: 999px !important;
+}
+body:not(.dark) .notice,
+body:not(.dark) .note,
+body:not(.dark) .hint {
+  background: #fff6df !important;
+  color: #6e5925 !important;
+  border-color: #f0dfa9 !important;
+  border-radius: 18px !important;
+}
+body:not(.dark) .feedback {
+  background: #eaf6ff !important;
+  border-radius: 16px !important;
+}
+body:not(.dark) .progress { background: #dceefa !important; }
+body:not(.dark) .bar {
+  background: linear-gradient(90deg, #087fd0, #27a9e7) !important;
+}
+body:not(.dark) footer { color: #6483a0 !important; }
+body.dark header {
+  background: linear-gradient(120deg, #17324b, #1e3e58) !important;
+  color: #e4f4ff !important;
+  border-color: #29435b !important;
+}
+body.dark .member,
+body.dark .member-info p,
+body.dark .stat,
+body.dark .stats {
+  color: #e4f4ff !important;
+}
+body.dark .member-icon {
+  background: #203d55 !important;
+  color: #77c8ee !important;
+}
+body.dark .progress { background: #263e52 !important; }
+@media (max-width: 550px) {
+  body:not(.dark) header { border-radius: 0 0 26px 26px; }
+  body:not(.dark) .panel,
+  body:not(.dark) .card,
+  body:not(.dark) .drug,
+  body:not(.dark) .member { border-radius: 21px !important; }
+}
+
+
+/* Saydalati pale blue and pastel card theme */
+:root {
+  --saydalati-navy: #103e79;
+  --saydalati-blue: #087fd0;
+  --saydalati-bg: #eaf7ff;
+}
+body:not(.dark) {
+  background: linear-gradient(180deg,#dff2ff,#f8fcff 48%,#eaf7ff) !important;
+  color: #153b68;
+}
+body:not(.dark) header {
+  background: linear-gradient(115deg,#c7eaff,#fff 56%,#d9f1ff) !important;
+  color: #103e79 !important;
+  border: 1px solid #fff;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 10px 26px #5ba9dc25;
+}
+body:not(.dark) header a { color:#087fd0 !important; }
+body:not(.dark) header h1,
+body:not(.dark) .section-title,
+body:not(.dark) .panel h2,
+body:not(.dark) .member-info h2 { color:#103e79 !important; }
+
+body:not(.dark) .panel,
+body:not(.dark) .card,
+body:not(.dark) .drug,
+body:not(.dark) .member,
+body:not(.dark) .compare,
+body:not(.dark) .item,
+body:not(.dark) .pick,
+body:not(.dark) .result-head,
+body:not(.dark) .profile,
+body:not(.dark) .group,
+body:not(.dark) .company,
+body:not(.dark) .intro {
+  background:linear-gradient(145deg,#fff,#f2faff) !important;
+  color:#153b68;
+  border:1px solid #fff !important;
+  border-radius:24px !important;
+  box-shadow:0 8px 22px #3886a719;
+}
+body:not(.dark) .stat {
+  background:linear-gradient(135deg,#fff,#f1f9ff) !important;
+  border-color:#d9efff !important;
+  border-radius:20px !important;
+}
+body:not(.dark) .num,
+body:not(.dark) .stat strong,
+body:not(.dark) .drug h2,
+body:not(.dark) .detail b { color:#087fd0 !important; }
+body:not(.dark) .member-icon {
+  background:#e3f3ff !important;
+  color:#087fd0 !important;
+  border-radius:22px !important;
+}
+body:not(.dark) input,
+body:not(.dark) select,
+body:not(.dark) textarea {
+  background:#fff !important;
+  color:#153b68 !important;
+  border:1px solid #c9e8fa !important;
+  border-radius:15px !important;
+}
+body:not(.dark) input:focus,
+body:not(.dark) select:focus,
+body:not(.dark) textarea:focus {
+  border-color:#42a9df !important;
+  box-shadow:0 0 0 3px #42a9df26 !important;
+}
+
+/* Six main cards */
+body:not(.dark) .tile {
+  min-height:138px;
+  padding:17px;
+  border:2px solid #fff !important;
+  border-radius:28px !important;
+  box-shadow:0 8px 22px #347dab22 !important;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+body:not(.dark) .tile:hover {
+  transform:translateY(-3px);
+  box-shadow:0 12px 26px #347dab30 !important;
+}
+body:not(.dark) .tile .art {
+  width:76px;
+  height:76px;
+  border-radius:23px;
+  background:#ffffffb8 !important;
+  font-size:48px;
+}
+body:not(.dark) .tile h4 { color:#164b80; }
+body:not(.dark) .tile p { color:#416d91; opacity:1; }
+body:not(.dark) .tile.medicine { background:linear-gradient(120deg,#d8efff,#b8ddff) !important; color:#104b86; }
+body:not(.dark) .tile.cases { background:linear-gradient(120deg,#e3f9df,#b8edb4) !important; color:#17623d; }
+body:not(.dark) .tile.interactions { background:linear-gradient(120deg,#fff0cf,#ffdda0) !important; color:#805017; }
+body:not(.dark) .tile.comparison { background:linear-gradient(120deg,#eee5ff,#d9c8ff) !important; color:#59378f; }
+body:not(.dark) .tile.team { background:linear-gradient(120deg,#f1e4ff,#d9c4ff) !important; color:#59378f; }
+body:not(.dark) .tile:not(.medicine):not(.cases):not(.interactions):not(.comparison):not(.team) {
+  background:linear-gradient(120deg,#e3f5f3,#bcebe2) !important;
+  color:#17645c;
+}
+body:not(.dark) .round {
+  background:#fff !important;
+  color:#124d83 !important;
+  border:0 !important;
+  border-radius:50% !important;
+  box-shadow:0 5px 18px #7dbce555 !important;
+}
+body:not(.dark) .cta,
+body:not(.dark) .back,
+body:not(.dark) .primary,
+body:not(.dark) #next,
+body:not(.dark) .intro-buttons #introNext,
+body:not(.dark) .intro-buttons #introStart {
+  background:linear-gradient(90deg,#0879cb,#19a6e5) !important;
+  color:#fff !important;
+  border:0 !important;
+  border-radius:18px !important;
+  box-shadow:0 6px 16px #087fd033 !important;
+}
+body:not(.dark) .secondary,
+body:not(.dark) .opt {
+  background:#fff !important;
+  color:#174d78 !important;
+  border:1px solid #cfe7f5 !important;
+  border-radius:15px !important;
+}
+body:not(.dark) .opt.correct { background:#e5f8e1 !important; border:2px solid #67bd79 !important; }
+body:not(.dark) .opt.wrong { background:#fff0ef !important; border:2px solid #e28d86 !important; }
+body:not(.dark) .pill { background:#e3f3ff !important; color:#12669c !important; border-radius:999px !important; }
+body:not(.dark) .notice,
+body:not(.dark) .note,
+body:not(.dark) .hint {
+  background:#fff6df !important;
+  color:#6e5925 !important;
+  border-color:#f0dfa9 !important;
+  border-radius:18px !important;
+}
+body:not(.dark) .feedback { background:#eaf6ff !important; border-radius:16px !important; }
+body:not(.dark) .progress { background:#dceefa !important; }
+body:not(.dark) .bar { background:linear-gradient(90deg,#087fd0,#27a9e7) !important; }
+body:not(.dark) footer { color:#6483a0 !important; }
+
+body.dark header {
+  background:linear-gradient(120deg,#17324b,#1e3e58) !important;
+  color:#e4f4ff !important;
+  border-color:#29435b !important;
+}
+body.dark .member,
+body.dark .member-info p,
+body.dark .stat,
+body.dark .stats { color:#e4f4ff !important; }
+body.dark .member-icon { background:#203d55 !important; color:#77c8ee !important; }
+body.dark .tile {
+  background:linear-gradient(130deg,#1c344b,#213d55) !important;
+  color:#e4f4ff !important;
+  border-color:#365773 !important;
+}
+body.dark .tile h4,
+body.dark .tile p { color:#e4f4ff !important; }
+body.dark .tile .art { background:#ffffff20 !important; }
+body.dark .round { background:#192a36 !important; color:#e4f4ff !important; }
+body.dark .progress { background:#263e52 !important; }
+@media(max-width:550px) {
+  body:not(.dark) header { border-radius:0 0 26px 26px; }
+  body:not(.dark) .panel,
+  body:not(.dark) .card,
+  body:not(.dark) .drug,
+  body:not(.dark) .member { border-radius:21px !important; }
+  body:not(.dark) .tile { min-height:126px; padding:13px; border-radius:24px !important; }
+  body:not(.dark) .tile .art { width:62px; height:62px; font-size:40px; border-radius:20px; }
+}
+

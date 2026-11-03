@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eaf7ff">
+<title>صيدليتي | تعلّم، تدرّب، وحقق هدفك</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
+:root{--navy:#103b70;--blue:#087fd0;--sky:#e8f6ff;--ink:#153b68}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#dff2ff,#f8fcff 45%,#eaf7ff);font-family:'Cairo',Tahoma,Arial,sans-serif;color:var(--ink);min-height:100vh}
+.app{max-width:1050px;margin:auto;padding:18px 18px 100px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.round{width:48px;height:48px;border:0;border-radius:50%;background:#fff;box-shadow:0 5px 18px #7dbce555;color:#124d83;font-size:22px}
+.brand{display:flex;align-items:center;gap:10px}.brand-mark{font-size:48px;filter:drop-shadow(0 5px 4px #5aa8d555)}.brand h1{font-size:clamp(30px,5vw,48px);margin:0;color:#103e79;font-weight:900;letter-spacing:-1px}.tag{margin:-5px 0 0;color:#087ac8;font-weight:800;font-size:14px;text-align:center}
+.hero{margin:18px 0 20px;border-radius:32px;padding:22px 26px;min-height:220px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative;background:linear-gradient(115deg,#c7eaff,#fff 55%,#d9f1ff);box-shadow:0 12px 28px #5ba9dc30;border:1px solid #fff}
+.hero:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:#8bd5ff44;left:-80px;top:-90px}
+.hero-copy{position:relative;z-index:1;max-width:560px}.eyebrow{font-size:15px;color:#267eb8;font-weight:800}.hero h2{font-size:clamp(26px,4.5vw,42px);line-height:1.35;margin:4px 0;color:#113c70;font-weight:900}.hero h2 span{color:#0784d7}.hero p{margin:5px 0 14px;font-weight:700;color:#315e85}.cta{border:0;background:linear-gradient(90deg,#0879cb,#19a6e5);color:#fff;padding:10px 22px;border-radius:18px;font:800 15px 'Cairo';box-shadow:0 6px 14px #087fd044}
+.mascot{width:180px;height:180px;flex:none;border-radius:48% 52% 45% 55%;display:grid;place-items:center;background:radial-gradient(circle at 35% 25%,#fff 0 14%,#bde7ff 55%,#82c9f4);font-size:112px;filter:drop-shadow(0 10px 7px #4c9cc555)}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:20px 4px 12px}.section-head h3{margin:0;font-size:21px;font-weight:900}.section-head small{color:#5480a4;font-weight:700}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tile{position:relative;display:flex;align-items:center;gap:14px;min-height:126px;padding:17px;border-radius:25px;text-decoration:none;color:inherit;border:2px solid #ffffffc9;box-shadow:0 7px 18px #417da51b;transition:.18s;cursor:pointer}
+.tile:active{transform:scale(.98)}.tile .art{width:76px;height:76px;display:grid;place-items:center;border-radius:22px;background:#ffffff9c;font-size:48px;flex:none}.tile h4{font-size:22px;margin:0 0 1px;font-weight:900}.tile p{margin:0;font-size:13px;font-weight:700;opacity:.8}.arrow{margin-right:auto;font-size:23px;font-weight:900}
+.medicine{background:linear-gradient(120deg,#d9efff,#b6ddff);color:#104b86}.cases{background:linear-gradient(120deg,#e3f9df,#b8edb4);color:#17623d}.interactions{background:linear-gradient(120deg,#fff0cf,#ffdda0);color:#805017}.team{background:linear-gradient(120deg,#f1e4ff,#d9c4ff);color:#59378f}.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.stat{background:#fff;border:1px solid #d9efff;border-radius:18px;padding:12px;text-align:center;box-shadow:0 4px 14px #438bb01a}.stat b{display:block;font-size:21px;color:#087fd0}.stat span{font-size:12px;font-weight:700;color:#6485a2}
+.bottom{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(12px);border-top:1px solid #d9edfa;display:flex;justify-content:center;gap:clamp(18px,7vw,80px);padding:9px 12px max(10px,env(safe-area-inset-bottom));box-shadow:0 -5px 20px #478ab01a}.navitem{border:0;background:none;color:#527493;font:700 12px 'Cairo';display:grid;gap:1px;justify-items:center;min-width:60px}.navitem strong{font-size:23px}.navitem.active{color:#087fd0}
+.toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:#123f70;color:#fff;padding:10px 18px;border-radius:14px;opacity:0;pointer-events:none;transition:.25s;font-size:13px;white-space:nowrap}.toast.show{opacity:1}
+@media(max-width:600px){.app{padding:12px 12px 95px}.round{width:40px;height:40px}.brand-mark{font-size:37px}.hero{min-height:185px;padding:18px 16px}.mascot{width:112px;height:130px;font-size:76px}.hero p{font-size:13px}.tiles{gap:10px}.tile{min-height:112px;padding:12px;gap:9px;border-radius:20px}.tile .art{width:55px;height:58px;font-size:36px;border-radius:16px}.tile h4{font-size:17px}.tile p{font-size:11px}.arrow{font-size:18px}.study{min-height:100px}.study .art{width:60px}.section-head h3{font-size:18px}}
+@media(max-width:380px){.mascot{width:88px;font-size:62px}.tile{gap:6px;padding:9px}.tile h4{font-size:15px}.tile .art{width:48px;font-size:31px}}
+
+/* ===== مقدمة صيدليتي عند أول تشغيل ===== */
+#onboarding{position:fixed;inset:0;z-index:99999;background:linear-gradient(160deg,#eaf9ff,#fff);display:flex;align-items:center;justify-content:center;padding:22px;font-family:'Cairo',Tahoma,Arial,sans-serif}
+#onboarding.hidden{display:none}
+.onboard-card{width:100%;max-width:430px;text-align:center;background:#fff;border-radius:28px;padding:32px 22px;box-shadow:0 12px 40px rgba(8,127,168,.15);border:1px solid #e4f4fc}
+.onboard-icon{font-size:76px;margin-bottom:18px}
+.onboard-card h2{color:#103e79;font-size:27px;margin:0 0 12px;font-weight:900}
+.onboard-card p{color:#526b78;font-size:16px;line-height:1.9;min-height:88px;margin:0}
+.intro-dots{display:flex;justify-content:center;gap:9px;margin:23px 0}
+.intro-dot{width:9px;height:9px;border-radius:50%;background:#c8e8f2}
+.intro-dot.active{width:25px;border-radius:10px;background:#087fd0}
+.intro-buttons{display:flex;gap:10px;justify-content:center}
+.intro-buttons button{border:0;border-radius:14px;padding:13px 22px;font:800 15px 'Cairo',Tahoma,Arial;cursor:pointer}
+#introNext{background:linear-gradient(90deg,#0879cb,#19a6e5);color:#fff;flex:1}
+#introBack{background:#eaf4f8;color:#087fa8}
+#skipIntro{background:transparent;color:#78909c;margin-top:12px;border:0;padding:9px;font:700 14px 'Cairo',Tahoma,Arial}
+
+</style>
+ <link rel="stylesheet" href="theme.css">
+<script src="theme.js" defer></script> 
+  <link rel="stylesheet" href="./theme.css">
+</head>
+<body>
+
+<div id="onboarding" aria-label="المقدمة التعريفية">
+  <div class="onboard-card">
+    <div class="onboard-icon" id="introEmoji">💊</div>
+    <h2 id="introTitle">أهلاً بك في صيدليتي</h2>
+    <p id="introText">رحلتك التعليمية في عالم الصيدلة تبدأ من هنا. تعلّم، اختبر معلوماتك، وطوّر مهاراتك الصيدلانية.</p>
+    <div class="intro-dots">
+      <span class="intro-dot active"></span><span class="intro-dot"></span>
+      <span class="intro-dot"></span><span class="intro-dot"></span>
+    </div>
+    <div class="intro-buttons">
+      <button id="introBack" type="button" style="display:none">السابق</button>
+      <button id="introNext" type="button">التالي</button>
+    </div>
+    <button id="skipIntro" type="button">تخطي المقدمة</button>
+  </div>
+</div>
+
+<main class="app">
+  <header class="top">
+    <a class="round" href="settings.html" aria-label="الإعدادات" title="الإعدادات" style="display:grid;place-items:center;text-decoration:none">⚙️</a>
+    <div>
+      <div class="brand"><span class="brand-mark">💊</span><h1>صيدليتي</h1></div>
+      <div class="tag">تعلّم .. تدرّب .. وحقق هدفك</div>
+    </div>
+    <button class="round" aria-label="الإشعارات" onclick="notify('لا توجد إشعارات جديدة')">🔔</button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">مرحباً بك في عالم التميّز</div>
+      <h2>خطوتك اليوم تقرّبك من أن تصبح <span>صيدلانياً مبدعاً</span></h2>
+      <p>تعلّم المعلومة، اختبر نفسك، وتقدّم بثقة.</p>
+      <button class="cta" onclick="document.getElementById('learning').scrollIntoView({behavior:'smooth'})">ابدأ رحلتك ←</button>
+    </div>
+    <div class="mascot" aria-label="شخصية صيدلانية">👩🏻‍⚕️</div>
+  </section>
+
+  <div class="section-head" id="learning"><h3>ماذا تريد أن تتعلّم اليوم؟</h3><small>اختر وجهتك</small></div>
+  <section class="tiles">
+    <a class="tile medicine" href="drugs.html"><div class="art">💊</div><div><h4>الأدوية</h4><p>مكتبة دوائية شاملة</p></div><span class="arrow">❯</span></a>
+    <a class="tile cases" href="cases.html"><div class="art">🩺</div><div><h4>الكيسات</h4><p>تدرّب على الحالات السريرية</p></div><span class="arrow">❯</span></a>
+    <a class="tile interactions" href="interactions.html"><div class="art">⚗️</div><div><h4>التداخلات الدوائية</h4><p>اكتشف التداخلات بين الأدوية</p></div><span class="arrow">❯</span></a>
+    <a class="tile comparison" href="comparison.html">
+  <div class="art">⚖️</div>
+  <div>
+    <h4>خارطة المقارنة</h4>
+    <p>قارن بين دواءين بالتفصيل</p>
+  </div>
+  <span class="arrow">❯</span>
+</a>
+    <a class="tile team" href="programmers.html"><div class="art">👩🏻‍💻</div><div><h4>المبرمجين</h4><p>فريق تطوير صيدليتي</p></div><span class="arrow">❯</span></a>
+    <a class="tile team" href="companies.html">
+  <div class="art">🇮🇶</div>
+  <div>
+    <h4>الشركات الدوائية العراقية</h4>
+    <p>تعرّف على الشركات وأدويتها</p>
+  </div>
+  <span class="arrow">❯</span>
+</a>
+  </section>
+
+</main>
+<nav class="bottom" aria-label="التنقل الرئيسي">
+  <a class="navitem active" href="index.html"><strong>⌂</strong>الرئيسية</a>
+  <button class="navitem" onclick="notify('قسم المفضلة قيد التجهيز')"><strong>★</strong>المفضلة</button>
+  <button class="navitem" onclick="notify('صيدليتي — منصة تعليمية صيدلانية')"><strong>ⓘ</strong>حول التطبيق</button>
+</nav>
+<div class="toast" id="toast" role="status"></div>
+<script>
+function notify(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+
+/* ===== مقدمة تظهر في أول زيارة فقط ===== */
+(function(){
+  const slides=[
+    {emoji:"💊",title:"أهلاً بك في صيدليتي",text:"منصة تعليمية صيدلانية تساعدك على تطوير معلوماتك ومهاراتك خطوة بخطوة."},
+    {emoji:"📚",title:"مكتبة الأدوية",text:"تعرّف على الأدوية واستخداماتها وتصنيفاتها حسب أجهزة الجسم بطريقة سهلة ومنظمة."},
+    {emoji:"🩺",title:"الكيسات الصيدلانية",text:"تدرّب على الحالات السريرية، وأجب عن الأسئلة لتقوية تفكيرك الصيدلاني."},
+    {emoji:"🎓",title:"مستقبلك يبدأ هنا",text:"اجعل صيدليتي رفيقك في رحلة التعلم والتطور لتصبح صيدلانياً أكثر كفاءة."}
+  ];
+  const overlay=document.getElementById("onboarding");
+  const emoji=document.getElementById("introEmoji");
+  const title=document.getElementById("introTitle");
+  const description=document.getElementById("introText");
+  const dots=document.querySelectorAll("#onboarding .intro-dot");
+  const next=document.getElementById("introNext");
+  const back=document.getElementById("introBack");
+  const skip=document.getElementById("skipIntro");
+  let current=0;
+  function finish(){
+    overlay.classList.add("hidden");
+    try{localStorage.setItem("saydalati_intro_seen","true");}catch(e){}
+  }
+  function render(){
+    emoji.textContent=slides[current].emoji;
+    title.textContent=slides[current].title;
+    description.textContent=slides[current].text;
+    dots.forEach((dot,i)=>dot.classList.toggle("active",i===current));
+    back.style.display=current===0?"none":"inline-block";
+    next.textContent=current===slides.length-1?"ابدأ رحلتك":"التالي";
+  }
+  next.addEventListener("click",function(){
+    if(current<slides.length-1){current++;render();}else{finish();}
+  });
+  back.addEventListener("click",function(){if(current>0){current--;render();}});
+  skip.addEventListener("click",finish);
+  let seen=false;
+  try{seen=localStorage.getItem("saydalati_intro_seen")==="true";}catch(e){}
+  if(seen){overlay.classList.add("hidden");}else{render();}
+})();
+
+</script>
+  <style>
+#introScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: linear-gradient(160deg,#eaf9ff,#ffffff,#d9f3ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  font-family: Arial, sans-serif;
+  direction: rtl;
+}
+#introScreen.hidden { display:none; }
+.intro-card {
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  background:white;
+  border-radius:28px;
+  padding:30px 22px;
+  box-shadow:0 12px 35px #087fa822;
+}
+.intro-icon {
+  font-size:75px;
+  margin:15px;
+}
+.intro-card h2 {
+  color:#087fa8;
+  font-size:27px;
+}
+.intro-card p {
+  color:#536777;
+  font-size:17px;
+  line-height:1.9;
+  min-height:65px;
+}
+.intro-dots {
+  color:#20b8d5;
+  letter-spacing:8px;
+  margin:20px;
+}
+.intro-buttons {
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.intro-buttons button {
+  border:0;
+  border-radius:15px;
+  padding:13px 22px;
+  font-size:16px;
+  cursor:pointer;
+}
+#introNext,#introStart {
+  background:#087fa8;
+  color:white;
+}
+#introSkip,#introPrev {
+  background:#eaf9ff;
+  color:#087fa8;
+}
+</style>
+
+<div id="introScreen" class="hidden">
+  <div class="intro-card">
+    <div class="intro-icon" id="introIcon">💊</div>
+    <h2 id="introTitle">أهلاً بك في صيدليتي</h2>
+    <p id="introText">رحلتك التعليمية في عالم الصيدلة تبدأ من هنا.</p>
+
+    <div class="intro-dots" id="introDots">● ○ ○ ○</div>
+
+    <div class="intro-buttons">
+
+</body>
+</html>
+

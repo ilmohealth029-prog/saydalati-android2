@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#087fa8">
+<title>صيدليتي | الإعدادات</title>
+<style>
+:root{--primary:#087fa8;--primary2:#0b91b8;--bg:#f2faff;--surface:#fff;--text:#18384b;--muted:#718797;--line:#e3edf3;--soft:#e8f6fb;--danger:#c94d55;--shadow:0 8px 26px rgba(21,75,102,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;transition:.2s}
+body.dark{--bg:#101c25;--surface:#192a36;--text:#e8f4f8;--muted:#a5b8c4;--line:#2b414f;--soft:#203b49;--shadow:0 8px 26px rgba(0,0,0,.18)}
+.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:34px}
+header{background:linear-gradient(135deg,#087fa8,#0b9bb9);color:white;padding:25px 20px 28px;border-radius:0 0 26px 26px}
+.top{display:flex;align-items:center;gap:12px}.back{border:1px solid #ffffff55;background:#ffffff18;color:white;border-radius:12px;width:40px;height:40px;font-size:21px;cursor:pointer}
+.brand{font-size:13px;opacity:.85}.heading{font-size:25px;font-weight:800;margin-top:17px}.sub{font-size:13px;opacity:.88;margin-top:7px}
+main{padding:18px 16px}.profile{display:flex;align-items:center;gap:13px;background:var(--surface);padding:15px;border-radius:18px;box-shadow:var(--shadow);margin-top:-1px;margin-bottom:20px}
+.avatar{width:49px;height:49px;border-radius:16px;background:var(--soft);display:grid;place-items:center;font-size:24px;color:var(--primary)}
+.profile strong{display:block;font-size:15px}.profile small{color:var(--muted);display:block;margin-top:5px}.edit{margin-right:auto;border:0;background:var(--soft);color:var(--primary);padding:9px 12px;border-radius:10px;font-weight:bold;cursor:pointer}
+.section{margin:20px 0 9px;font-size:13px;font-weight:800;color:var(--muted);padding:0 4px}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:var(--shadow)}
+.item{display:flex;align-items:center;gap:12px;padding:14px 13px;min-height:67px;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}.ico{width:39px;height:39px;border-radius:13px;background:var(--soft);display:grid;place-items:center;font-size:19px;flex-shrink:0}
+.info{flex:1;min-width:0}.info b{font-size:14px;display:block}.info small{display:block;color:var(--muted);font-size:11px;margin-top:5px;line-height:1.5}
+.arrow{color:var(--muted);font-size:20px}.switch{position:relative;width:46px;height:26px;flex-shrink:0}.switch input{display:none}.track{position:absolute;inset:0;border-radius:20px;background:#cbd8df;cursor:pointer;transition:.2s}.track:before{content:"";position:absolute;width:20px;height:20px;top:3px;right:3px;background:white;border-radius:50%;transition:.2s;box-shadow:0 1px 4px #0002}.switch input:checked+.track{background:var(--primary)}.switch input:checked+.track:before{transform:translateX(-20px)}
+select,input[type=number]{border:1px solid var(--line);background:var(--bg);color:var(--text);padding:9px 10px;border-radius:10px;font-family:inherit;max-width:130px}
+.plus{background:linear-gradient(120deg,#fff7df,#fff);border:1px solid #f0dfb1}.dark .plus{background:linear-gradient(120deg,#3c3422,#192a36);border-color:#68582e}
+.plus .ico{background:#fff0c5}.plus .info b{color:#9b6b08}
+.action{border:0;background:var(--soft);color:var(--primary);padding:9px 12px;border-radius:10px;font-family:inherit;font-weight:bold;cursor:pointer}
+.danger{color:var(--danger);background:#fff0f0}.dark .danger{background:#46282e}
+.footer{text-align:center;color:var(--muted);font-size:11px;line-height:1.8;margin-top:24px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#18384b;color:white;padding:12px 18px;border-radius:12px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:5;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal{display:none;position:fixed;inset:0;background:#07182499;z-index:10;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.dialog{background:var(--surface);color:var(--text);border-radius:18px;padding:22px;max-width:360px;width:100%;box-shadow:var(--shadow)}.dialog h3{margin:0 0 9px}.dialog p{color:var(--muted);font-size:13px;line-height:1.7}.dialog-actions{display:flex;gap:9px;margin-top:18px}.dialog-actions button{flex:1;padding:11px;border:0;border-radius:10px;font-family:inherit;font-weight:bold;cursor:pointer}.confirm{background:var(--danger);color:white}.cancel{background:var(--soft);color:var(--text)}
+@media(min-width:600px){main{padding:22px 24px}.item{padding:15px 17px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="top"><button class="back" onclick="toast('زر الرجوع تجريبي')">‹</button><div><div class="brand">SAYDALATI • صيدليتي</div><div style="font-size:12px;opacity:.85;margin-top:3px">أكاديمية الصيدلة</div></div></div>
+ <div class="heading">الإعدادات ⚙️</div><div class="sub">خصص تجربتك الدراسية بالطريقة التي تناسبك</div>
+</header>
+<main>
+ <div class="profile">
+  <div class="avatar">👤</div><div><strong id="profileName">طالب صيدلة</strong><small>حسابك على صيدليتي</small></div>
+  <button class="edit" onclick="editName()">تعديل</button>
+ </div>
+
+ <div class="section">التخصيص والمظهر</div>
+ <div class="group">
+  <div class="item"><div class="ico">🌙</div><div class="info"><b>الوضع الليلي</b><small>تغيير ألوان التطبيق لتناسب الإضاءة المنخفضة</small></div><label class="switch"><input id="darkMode" type="checkbox"><span class="track"></span></label></div>
+
+ </div>
+
+ <div class="section">الدراسة والتقدم</div>
+ <div class="group">
+  <div class="item"><div class="ico">🎯</div><div class="info"><b>هدف الدراسة اليومي</b><small>عدد الأسئلة التي تريد حلها يومياً</small></div><select id="dailyGoal"><option>5</option><option selected>10</option><option>15</option><option>20</option><option>30</option></select></div>
+  <div class="item"><div class="ico">🧠</div><div class="info"><b>تذكير بالمراجعة</b><small>تفعيل تذكير يومي للعودة إلى الدراسة</small></div><label class="switch"><input id="studyReminder" type="checkbox" checked><span class="track"></span></label></div>
+  <div class="item"><div class="ico">📊</div><div class="info"><b>بيانات التقدم</b><small>إدارة سجل إنجازك الدراسي</small></div><button class="action" onclick="toast('ميزة عرض التقدم تُربط بصفحة التقدم')">عرض</button></div>
+ </div>
+
+ <div class="section">الإشعارات</div>
+ <div class="group">
+  <div class="item"><div class="ico">🔔</div><div class="info"><b>إشعارات التطبيق</b><small>السماح بالتنبيهات العامة والتحديثات</small></div><label class="switch"><input id="notifications" type="checkbox" checked><span class="track"></span></label></div>
+  <div class="item"><div class="ico">📚</div><div class="info"><b>تذكير بالكيسات الجديدة</b><small>تنبيه عند إضافة حالات سريرية جديدة</small></div><label class="switch"><input id="caseAlerts" type="checkbox" checked><span class="track"></span></label></div>
+ </div>
+
+ <div class="footer">صيدليتي Saydalati<br>صُمم لدعم رحلتك في تعلم الصيدلة 💙</div>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
+function save(key,val){localStorage.setItem('saydalati_settings_'+key,val)}
+function load(key,def){const v=localStorage.getItem('saydalati_settings_'+key);return v===null?def:v}
+['darkMode','studyReminder','notifications','caseAlerts'].forEach(id=>{$(id).checked=load(id,id==='studyReminder'||id==='notifications'||id==='caseAlerts'||id==='autoSave'?'true':'false')==='true';$(id).addEventListener('change',()=>{save(id,$(id).checked);if(id==='darkMode')document.body.classList.toggle('dark',$('darkMode').checked);toast('تم حفظ الإعداد')})});
+document.body.classList.toggle('dark',$('darkMode').checked);
+$('dailyGoal').value=load('dailyGoal','10');$('dailyGoal').addEventListener('change',()=>{save('dailyGoal',$('dailyGoal').value);toast('تم تحديث هدفك اليومي')});
+$('profileName').textContent=load('profileName','طالب صيدلة');
+function editName(){const n=prompt('اكتب الاسم الذي تريد ظهوره:',$('profileName').textContent);if(n&&n.trim()){$('profileName').textContent=n.trim();save('profileName',n.trim());toast('تم تحديث الاسم')}}
+</script>
+</body>
+</html>

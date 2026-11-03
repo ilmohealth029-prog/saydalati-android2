@@ -50,7 +50,17 @@ jobs:
             -name '*.json' -o \
             -name '*.png' \
           \) -exec cp {} app/src/main/assets/ \;
+          mkdir -p app/src/main/assets/company-logos
 
+          curl -fL --retry 3 "https://annabaa.org/aarticles/fileM/5700fccdb708a.jpg" -o app/src/main/assets/company-logos/sdi.jpg
+
+          curl -fL --retry 3 "https://barcoaliraq.com/assets/uploads/project-1.jpeg" -o app/src/main/assets/company-logos/awamedica.jpeg
+
+          curl -fL --retry 3 "https://cdn.theorg.com/64a24cc3-6c20-4375-b6e5-336a3011ac04_small.jpg" -o app/src/main/assets/company-logos/pioneer.jpg
+
+          curl -fL --retry 3 "https://alfayhaaco.com/wp-content/uploads/2024/07/sama-logo-2-01-2.png" -o app/src/main/assets/company-logos/fayha.png
+
+          curl -fL --retry 3 "https://static.wixstatic.com/media/0534ba_b6d3f34521f94833ab05cfe39b0ba810~mv2.png" -o app/src/main/assets/company-logos/alkindi.png
           python3 - <<'PY'
           from PIL import Image
           from pathlib import Path

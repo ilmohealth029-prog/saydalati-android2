@@ -80,6 +80,20 @@ $('profileName').textContent=load('profileName','طالب صيدلة');
 function editName(){const n=prompt('اكتب الاسم الذي تريد ظهوره:',$('profileName').textContent);if(n&&n.trim()){$('profileName').textContent=n.trim();save('profileName',n.trim());toast('تم تحديث الاسم')}}
 </script>
 </body>
+ <button onclick="location.href='index.html'" style="
+position:fixed;
+top:15px;
+right:15px;
+z-index:9999;
+width:45px;
+height:45px;
+border:0;
+border-radius:50%;
+background:#087fa8;
+color:white;
+font-size:25px;
+cursor:pointer;
+">→</button>
  <a href="index.html" style="
 display:inline-flex;
 align-items:center;

@@ -1,0 +1,92 @@
+/* ===== SAYDALATI GLOBAL DARK MODE ===== */
+
+body.dark {
+  --bg: #101c25;
+  --surface: #192a36;
+  --text: #e8f4f8;
+  --ink: #e8f4f8;
+  --muted: #a5b8c4;
+  --line: #2b414f;
+  --soft: #203b49;
+
+  background: #101c25 !important;
+  color: #e8f4f8 !important;
+}
+
+/* البطاقات */
+body.dark .hero,
+body.dark .tile,
+body.dark .stat,
+body.dark .drug,
+body.dark .card,
+body.dark .stats,
+body.dark .tools,
+body.dark .item,
+body.dark .pick,
+body.dark .compare,
+body.dark .result-head,
+body.dark .profile,
+body.dark .group,
+body.dark .company,
+body.dark .panel,
+body.dark .intro {
+  background: #192a36 !important;
+  color: #e8f4f8 !important;
+  border-color: #2b414f !important;
+}
+
+/* حقول البحث والاختيار */
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #203542 !important;
+  color: #e8f4f8 !important;
+  border-color: #3a5665 !important;
+}
+
+body.dark input::placeholder {
+  color: #a5b8c4 !important;
+}
+
+/* النصوص الثانوية */
+body.dark .small,
+body.dark .meta,
+body.dark .cls,
+body.dark footer,
+body.dark .muted {
+  color: #a5b8c4 !important;
+}
+
+/* أزرار الخيارات */
+body.dark .opt {
+  background: #203542 !important;
+  color: #e8f4f8 !important;
+  border-color: #3a5665 !important;
+}
+
+/* الملاحظات */
+body.dark .notice,
+body.dark .hint {
+  background: #393321 !important;
+  color: #f1dfad !important;
+  border-color: #65552e !important;
+}
+
+/* الشريط السفلي */
+body.dark .bottom {
+  background: #152631 !important;
+  border-color: #2b414f !important;
+}
+
+/* الفواصل */
+body.dark th,
+body.dark td {
+  border-color: #2b414f !important;
+}
+
+/* العناوين */
+body.dark .drug h2,
+body.dark .section-title,
+body.dark .field b {
+  color: #62c9e6 !important;
+}
